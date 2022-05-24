@@ -79,7 +79,7 @@ Here is an example command to create an interactive bash shell on a compute node
 ```
 
 Once the module is loaded, you can now begin running AF2 following the instructions [here](https://github.mskcc.org/HPC/alphafold#running-alphafold-multimer-v211).
-> Additionally, custom aliases were created to simplify the run command when using the AF2 module.
+> Additionally, custom aliases were created to simplify the run command depending on the AF2 module being used.
 
 1. ```runaf``` used for alphafold/2.0.1/af_2.0.1
 2. ```runaf2``` used for alphafold/2.1.1/af_2.1.1
@@ -138,7 +138,7 @@ Here is an example command to create an interactive bash shell on a compute node
 
 > Please use the full run command ```bash run_alphafold.sh``` to replace the custom aliases when running AF2 using a conda environment.
 
-## Running AlphaFold (v2.0.0)
+## Running AlphaFold
 
 The [launch script](run_alphafold.sh) below shows the parameters to run AF2:
 
@@ -168,10 +168,10 @@ Optional Parameters:
 
     ```
     # Example run (Uses GPU)
-    runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f ./example/query.fasta -t 2021-08-11
+    runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f ./example/query.fasta -t 2021-11-01
     
     # OR only uses CPU
-    runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f ./example/query.fasta -t 2021-08-11 -g false
+    runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f ./example/query.fasta -t 2021-11-01 -g false
     ```
 
 ### AlphaFold output
@@ -214,7 +214,7 @@ The output directory should have the following structure:
     └── unrelaxed_model_5.pdb
 ```
 
-## Running AlphaFold-Multimer (v2.1.1)
+## Running AlphaFold-Multimer (v2.2.0)
 
 All steps are the same as when running the monomer system, but you will have to
 
@@ -293,7 +293,6 @@ Then run the following command:
 runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f heteromer.fasta -t 2021-11-01 -m multimer -l false
 ```
 
-
 ### AlphaFold-Multimer output
 
 The output directory for a multimer run should have the following structure:
@@ -359,6 +358,27 @@ The output directory for a multimer run should have the following structure:
 ```
 Here is an example of ranked_0.pdb viewed on a protein viewer (Mol*) extension on VSCode:
 ![Screen Shot 2022-02-01 at 4 59 38 PM](https://github.mskcc.org/storage/user/1019/files/be353a1a-0d52-4f3e-a5bb-6c24d9960ac7)
+
+
+## API Changes
+### API changes between v2.1.1 and v2.2.0
+*   The is_prokaryote option -l is removed
+*   New option -l is now used for setting the number of multimer predictions per model
+*   Options for relaxation -r and to enable GPU relaxation -e are added
+*   AF2 parameters link has been updated in the download_db.sh script (users should download this new parameters when using AF2 v2.2.0)
+
+### API changes between v2.0.0 and v2.1.1
+*   The preset flag -p was split into -c (db_preset) and -m (model_preset) in our run_alphafold.sh
+    * Four model presets (for option -m) are now supported
+        * monomer
+        * monomer_casp14
+        * monomer_ptm
+        * multimer
+    * Two db preset configurations (for option -c) are supported
+        * full_dbs
+        * reduced_dbs
+*   The model names to use are not specified using -m option anymore. If you want to customize model names you will have to modify the appropriate MODEL_PRESETS dictionary in alphafold/model/config.py
+
 
 ## Submitting a batch job
 
