@@ -416,21 +416,43 @@ Below are some templates for your LSF script. You can customize the script as ne
     #!/bin/bash
     #BSUB -J alphafold-run
     #BSUB -q gpuqueue
-    #BSUB -n 12
-    #BSUB -R span[ptile=12]
-    #BSUB -R rusage[mem=8]
+    #BSUB -n 20
+    #BSUB -R span[ptile=20]
+    #BSUB -R rusage[mem=40]
     #BSUB -gpu "num=4:mode=shared:j_exclusive=yes"
-    #BSUB -W 5:00
+    #BSUB -W 40:00
     #BSUB -o /lila/data/hpcadmin/home/%U/outputs/errors.%J
     #BSUB -eo /lila/data/hpcadmin/home/%U/outputs/output.%J
     #BSUB -L /bin/bash
-    
-    # Unload all loaded modules and reset everything to original state
+
+    # Unload all loaded modules
     module purge
-    
-    # Load alphafold module
+
+    # Load alphafold module and required environments
     module load alphafold/2.2.0/af_2.2.0
-    
+    module load cudnn/8.1.0-cuda11.2
+
+    export OPENMM_CPU_THREADS=8
+    export NVIDIA_VISIBLE_DEVICES=all
+    export TF_FORCE_UNIFIED_MEMORY=1
+    export TF_FORCE_GPU_ALLOW_GROWTH=true
+    export XLA_PYTHON_CLIENT_MEM_FRACTION=8.0
+    export XLA_PYTHON_CLIENT_ALLOCATOR=platform
+    export XLA_PYTHON_CLIENT_PREALLOCATE=false
+    export XLA_FLAGS=--xla_gpu_force_compilation_parallelism=1
+
     # Run alphafold
-    runaf-2.2.0 -d /lila/data/alphafold-db/ -o /<path>/<to output_dir>/ -f /<path>/<to fasta file>/ -t 2021-11-01 -a 0,1,2,3 -m multimer -l false >alpha.out 2>alpha.err
+    runaf-2.2.0 \
+    -d /lila/data/alphafold-db/ \
+    -o /<path>/<to output_dir>/ \
+    -f /<path>/<to fasta file>/ \
+    -t 2022-04-15 \
+    -a 0,1,2,3 \
+    -r true \
+    -g true \
+    -e true \
+    -m multimer \
+    -c full_dbs \
+    >alpha-latest.out \
+    2>alpha-latest.err
 ```
