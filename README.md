@@ -340,22 +340,22 @@ The output directory for a multimer run should have the following structure:
     ├── ranked_3.pdb
     ├── ranked_4.pdb
     ├── ranking_debug.json
-    ├── relaxed_model_1_multimer.pdb
-    ├── relaxed_model_2_multimer.pdb
-    ├── relaxed_model_3_multimer.pdb
-    ├── relaxed_model_4_multimer.pdb
-    ├── relaxed_model_5_multimer.pdb
-    ├── result_model_1_multimer.pkl
-    ├── result_model_2_multimer.pkl
-    ├── result_model_3_multimer.pkl
-    ├── result_model_4_multimer.pkl
-    ├── result_model_5_multimer.pkl
+    ├── relaxed_model_1_multimer_v2_pred_0.pdb
+    ├── relaxed_model_2_multimer_v2_pred_0.pdb
+    ├── relaxed_model_3_multimer_v2_pred_0.pdb
+    ├── relaxed_model_4_multimer_v2_pred_0.pdb
+    ├── relaxed_model_5_multimer_v2_pred_0.pdb
+    ├── result_model_1_multimer_v2_pred_0.pkl
+    ├── result_model_2_multimer_v2_pred_0.pkl
+    ├── result_model_3_multimer_v2_pred_0.pkl
+    ├── result_model_4_multimer_v2_pred_0.pkl
+    ├── result_model_5_multimer_v2_pred_0.pkl
     ├── timings.json
-    ├── unrelaxed_model_1_multimer.pdb
-    ├── unrelaxed_model_2_multimer.pdb
-    ├── unrelaxed_model_3_multimer.pdb
-    ├── unrelaxed_model_4_multimer.pdb
-    └── unrelaxed_model_5_multimer.pdb
+    ├── unrelaxed_model_1_multimer_v2_pred_0.pdb
+    ├── unrelaxed_model_2_multimer_v2_pred_0.pdb
+    ├── unrelaxed_model_3_multimer_v2_pred_0.pdb
+    ├── unrelaxed_model_4_multimer_v2_pred_0.pdb
+    └── unrelaxed_model_5_multimer_v2_pred_0.pdb
 ```
 Here is an example of ranked_0.pdb viewed on a protein viewer (Mol*) extension on VSCode:
 ![Screen Shot 2022-02-01 at 4 59 38 PM](https://github.mskcc.org/storage/user/1019/files/be353a1a-0d52-4f3e-a5bb-6c24d9960ac7)
