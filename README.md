@@ -356,8 +356,6 @@ The output directory for a multimer run should have the following structure:
     ├── unrelaxed_model_4_multimer_v2_pred_0.pdb
     └── unrelaxed_model_5_multimer_v2_pred_0.pdb
 ```
-Here is an example of ranked_0.pdb viewed on a protein viewer (Mol*) extension on VSCode:
-![Screen Shot 2022-02-01 at 4 59 38 PM](https://github.mskcc.org/storage/user/1019/files/be353a1a-0d52-4f3e-a5bb-6c24d9960ac7)
 
 
 ## API Changes
